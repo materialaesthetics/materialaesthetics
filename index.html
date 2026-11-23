@@ -1,5 +1,10 @@
-<title>MaterialAesthetics</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MaterialAesthetics: A Multidimensional Dataset and Material-View Conditioned Aesthetic Assessment</title>
+<meta name="description" content="MaterialAesthetics: 13,163 real and AI-generated images of six materials in three views, each rated on three holistic and six appearance-attribute dimensions, with the MVCAA assessment method.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
@@ -53,8 +58,11 @@ p { margin: 0; }
 /* Hero */
 .hero { display: grid; gap: 20px; }
 .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
-.hero h1 { font-size: clamp(40px, 7vw, 76px); line-height: 1; font-weight: 700; }
-.hero .sub { font-size: clamp(18px, 2.4vw, 22px); color: var(--muted); max-width: 40ch; line-height: 1.4; }
+.hero h1 { font-size: clamp(28px, 7.5vw, 76px); line-height: 1; font-weight: 700; }
+.hero h1 .tsub { display: block; margin-top: 14px; font-size: clamp(21px, 3.2vw, 34px); line-height: 1.2; font-weight: 600; max-width: 36ch; }
+.nowrap { white-space: nowrap; }
+.authors { font-size: 17px; color: var(--muted); }
+.abstract p { max-width: 70ch; font-size: 16.5px; }
 .thesis { font-family: var(--display); font-size: clamp(20px, 3vw, 28px); font-weight: 600; }
 .thesis em { font-style: normal; color: var(--teal); }
 .links { display: flex; flex-wrap: wrap; gap: 10px; }
@@ -135,13 +143,15 @@ footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--rule)
   .fill { transition: width .6s ease; }
 }
 </style>
+</head>
+<body>
 
 <div class="wrap">
 
   <header class="hero">
     <div class="eyebrow">Dataset and benchmark · Anonymous submission</div>
-    <h1>MaterialAesthetics</h1>
-    <p class="sub">A multidimensional dataset and material–view conditioned aesthetic assessment</p>
+    <h1>MaterialAesthetics: <span class="tsub">A Multidimensional Dataset and <span class="nowrap">Material-View</span> Conditioned Aesthetic Assessment</span></h1>
+    <p class="authors">Anonymous Authors</p>
     <p class="thesis">Rate the <em>material</em>, not the photograph.</p>
     <div class="links">
       <a class="chip primary" href="https://huggingface.co/datasets/material-aesthetics/material-aesthetics" target="_blank" rel="noopener">Dataset on Hugging Face</a>
@@ -162,10 +172,19 @@ footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--rule)
     <figcaption>Examples from MaterialAesthetics. Each row shows one material; each column group shows one view with a real and an AI-generated image.</figcaption>
   </figure>
 
+  <section class="spec" id="abstract">
+    <div class="label"><span class="k">Abstract</span><h2>Overview</h2></div>
+    <div class="body abstract">
+      <p>Material aesthetics is central to product and interior design, yet existing data cannot capture it: image aesthetic benchmarks rate whole photographs, and material datasets target recognition. Neither measures how appealing a specified material looks. Then, we introduce MaterialAesthetics, a dataset of 13,163 real and AI-generated images covering six materials (wood, stone, metal, leather, fabric, and plastic) across standard, macro, and application views, each annotated with three holistic ratings and six appearance-attribute ratings.</p>
+      <p>We further propose Material-View Conditioned Aesthetic Assessment (MVCAA). A frozen text encoder turns the material name and a view description into a query that attends over patch features of a visual encoder adapted with weight-decomposed low-rank adaptation (DoRA). The attended evidence is combined with a uniformly pooled anchor, so scores are predicted from image evidence alone, and only 1.46M parameters are trained. Measured by within-material Spearman correlation, MVCAA reaches 0.448 on a held-out test split, 8.5% above the strongest baseline, which trains about 70 times as many parameters.</p>
+      <p>The six appearance attributes jointly explain 77.9% of held-out variation in overall aesthetic ratings, and their relative weights shift with material and view. Together, the dataset, model, and evaluation protocol support the study of material aesthetics under different presentation conditions.</p>
+    </div>
+  </section>
+
   <section class="spec" id="task">
     <div class="label"><span class="k">Task</span><h2>A designated material</h2></div>
     <div class="body">
-      <p>Image aesthetic benchmarks rate whole photographs, and material datasets target recognition. Neither measures how appealing a designated material looks. Annotators in MaterialAesthetics judged the material itself, apart from the background and composition, under three presentation types.</p>
+      <p>Annotators in MaterialAesthetics judged how appealing the designated material itself looks, apart from the background and composition, under three presentation types.</p>
       <div class="views">
         <div class="view"><h3>Standard</h3><p>A representative surface with a simple background and even lighting.</p></div>
         <div class="view"><h3>Macro</h3><p>Close-ups of texture, pores, fibers, grains, and gloss details.</p></div>
@@ -297,3 +316,5 @@ footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--rule)
 
   <footer>MaterialAesthetics is provided for non-commercial research use. Images remain the property of their respective owners.</footer>
 </div>
+</body>
+</html>
