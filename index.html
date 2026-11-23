@@ -1,0 +1,299 @@
+<title>MaterialAesthetics</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a material spec sheet. Narrow label column on the left, content on the right; the specimen grid is the centerpiece. */
+:root {
+  --bg: #F3F5F3;
+  --surface: #FFFFFF;
+  --ink: #1C2A2E;
+  --muted: #5B6C70;
+  --rule: #D6DDDA;
+  --teal: #2C7171;
+  --plum: #84567E;
+  --amber: #A9762A;
+  --plate: #FFFFFF;
+  --best: #E3EFEE;
+  --display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #11191B; --surface: #182225; --ink: #E4EBE9; --muted: #98A9AC; --rule: #2A383B;
+    --teal: #63B5AF; --plum: #C595BC; --amber: #DDB063; --plate: #F4F6F5; --best: #1F3634;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #11191B; --surface: #182225; --ink: #E4EBE9; --muted: #98A9AC; --rule: #2A383B;
+  --teal: #63B5AF; --plum: #C595BC; --amber: #DDB063; --plate: #F4F6F5; --best: #1F3634;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1060px; margin: 0 auto; padding-block: 56px 72px; display: grid; gap: 64px; }
+a { color: var(--teal); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+p { margin: 0; }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* Hero */
+.hero { display: grid; gap: 20px; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.hero h1 { font-size: clamp(40px, 7vw, 76px); line-height: 1; font-weight: 700; }
+.hero .sub { font-size: clamp(18px, 2.4vw, 22px); color: var(--muted); max-width: 40ch; line-height: 1.4; }
+.thesis { font-family: var(--display); font-size: clamp(20px, 3vw, 28px); font-weight: 600; }
+.thesis em { font-style: normal; color: var(--teal); }
+.links { display: flex; flex-wrap: wrap; gap: 10px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px;
+  border: 1px solid var(--rule); background: var(--surface); color: var(--ink);
+  font-size: 14px; font-weight: 500; text-decoration: none;
+}
+.chip.primary { background: var(--teal); border-color: var(--teal); color: var(--bg); }
+.chip.off { color: var(--muted); }
+.stats { display: flex; flex-wrap: wrap; gap: 8px 28px; padding-top: 8px; border-top: 1px solid var(--rule); }
+.stat { display: grid; }
+.stat b { font-family: var(--mono); font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 13px; color: var(--muted); }
+
+/* Figures */
+figure { margin: 0; display: grid; gap: 10px; }
+.plate { background: var(--plate); border-radius: 10px; padding: clamp(8px, 2vw, 18px); border: 1px solid var(--rule); }
+.plate img { display: block; width: 100%; height: auto; max-width: 100%; }
+figcaption { font-size: 14px; color: var(--muted); max-width: 75ch; }
+
+/* Spec-sheet sections */
+section.spec { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 32px; border-top: 1px solid var(--rule); padding-top: 28px; }
+.label { display: grid; gap: 4px; align-content: start; }
+.label .k { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.label h2 { font-size: 26px; font-weight: 600; }
+.body { display: grid; gap: 22px; min-width: 0; }
+.body > p { max-width: 68ch; }
+.views { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.view { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px; display: grid; gap: 4px; }
+.view h3 { font-size: 16px; }
+.view p { font-size: 14px; color: var(--muted); }
+
+/* Tables */
+.tbl { overflow-x: auto; background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { padding: 9px 12px; text-align: right; white-space: nowrap; border-bottom: 1px solid var(--rule); }
+th:first-child, td:first-child { text-align: left; }
+thead th { font-weight: 600; color: var(--muted); font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+tbody tr:last-child td { border-bottom: 0; }
+td.num, td .num { font-family: var(--mono); }
+tr.ours td { background: var(--best); font-weight: 600; }
+tr.sep td { border-top: 2px solid var(--rule); }
+td.left { text-align: left; white-space: normal; min-width: 260px; color: var(--muted); }
+.sym { font-family: var(--mono); color: var(--teal); font-weight: 600; }
+.sym.w { color: var(--plum); }
+.note { font-size: 13px; color: var(--muted); max-width: 75ch; }
+
+/* Method points */
+.points { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.point { border-left: 3px solid var(--k); padding: 2px 0 2px 14px; display: grid; gap: 4px; }
+.point h3 { font-size: 16px; }
+.point p { font-size: 14px; color: var(--muted); }
+
+/* Shapley bars (scale: 0–25% of explained variance) */
+.bars { display: grid; gap: 10px; background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px; }
+.bar { display: grid; grid-template-columns: 170px minmax(0, 1fr) 52px; align-items: center; gap: 12px; font-size: 14px; }
+.track { height: 14px; background: var(--rule); border-radius: 4px; overflow: hidden; }
+.fill { height: 100%; background: var(--plum); border-radius: 4px; }
+.bar.top .fill { background: var(--teal); }
+.bar .v { font-family: var(--mono); text-align: right; font-variant-numeric: tabular-nums; }
+.r2 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.r2 div { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px; display: grid; }
+.r2 b { font-family: var(--mono); font-size: 24px; font-weight: 600; }
+.r2 span { font-size: 13px; color: var(--muted); }
+
+.cite { display: grid; gap: 10px; }
+.cite pre { margin: 0; padding: 16px; background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; font-family: var(--mono); font-size: 13px; overflow-x: auto; color: var(--muted); }
+footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 20px; }
+
+@media (max-width: 760px) {
+  section.spec { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .views, .points, .r2 { grid-template-columns: minmax(0, 1fr); }
+  .bar { grid-template-columns: 120px minmax(0, 1fr) 48px; }
+  .wrap { padding-block: 32px 48px; gap: 48px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .fill { transition: width .6s ease; }
+}
+</style>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">Dataset and benchmark · Anonymous submission</div>
+    <h1>MaterialAesthetics</h1>
+    <p class="sub">A multidimensional dataset and material–view conditioned aesthetic assessment</p>
+    <p class="thesis">Rate the <em>material</em>, not the photograph.</p>
+    <div class="links">
+      <a class="chip primary" href="https://huggingface.co/datasets/material-aesthetics/material-aesthetics" target="_blank" rel="noopener">Dataset on Hugging Face</a>
+      <span class="chip off">Paper · under review</span>
+      <span class="chip off">Code · after review</span>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>13,163</b><span>images</span></div>
+      <div class="stat"><b>6</b><span>materials</span></div>
+      <div class="stat"><b>3</b><span>views</span></div>
+      <div class="stat"><b>9</b><span>rating dimensions</span></div>
+      <div class="stat"><b>39,473</b><span>ratings</span></div>
+    </div>
+  </header>
+
+  <figure>
+    <div class="plate"><img src="img/samples.jpg" alt="Grid of example images: six materials (wood, stone, metal, leather, fabric, plastic) in rows; standard, macro and application views in column groups, each with a real and an AI-generated image." width="2332" height="2204"></div>
+    <figcaption>Examples from MaterialAesthetics. Each row shows one material; each column group shows one view with a real and an AI-generated image.</figcaption>
+  </figure>
+
+  <section class="spec" id="task">
+    <div class="label"><span class="k">Task</span><h2>A designated material</h2></div>
+    <div class="body">
+      <p>Image aesthetic benchmarks rate whole photographs, and material datasets target recognition. Neither measures how appealing a designated material looks. Annotators in MaterialAesthetics judged the material itself, apart from the background and composition, under three presentation types.</p>
+      <div class="views">
+        <div class="view"><h3>Standard</h3><p>A representative surface with a simple background and even lighting.</p></div>
+        <div class="view"><h3>Macro</h3><p>Close-ups of texture, pores, fibers, grains, and gloss details.</p></div>
+        <div class="view"><h3>Application</h3><p>The material in a product, a space, or a context of use.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spec" id="dataset">
+    <div class="label"><span class="k">Dataset</span><h2>Composition</h2></div>
+    <div class="body">
+      <p>10,037 real images from public online sources and 3,126 images generated with text-to-image tools. Thirty annotators with design training rated every image on nine dimensions, three ratings per image, blind to whether it was real or generated.</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Material</th><th>Standard</th><th>Macro</th><th>Application</th><th>Real</th><th>Generated</th><th>Total</th></tr></thead>
+          <tbody class="num">
+            <tr><td>Wood</td><td>676</td><td>692</td><td>656</td><td>1,522</td><td>502</td><td>2,024</td></tr>
+            <tr><td>Stone</td><td>981</td><td>1,065</td><td>875</td><td>2,112</td><td>809</td><td>2,921</td></tr>
+            <tr><td>Metal</td><td>742</td><td>784</td><td>391</td><td>1,518</td><td>399</td><td>1,917</td></tr>
+            <tr><td>Leather</td><td>805</td><td>767</td><td>384</td><td>1,374</td><td>582</td><td>1,956</td></tr>
+            <tr><td>Fabric</td><td>929</td><td>935</td><td>473</td><td>1,905</td><td>432</td><td>2,337</td></tr>
+            <tr><td>Plastic</td><td>987</td><td>785</td><td>236</td><td>1,606</td><td>402</td><td>2,008</td></tr>
+            <tr class="sep"><td><b>Total</b></td><td>5,120</td><td>5,028</td><td>3,015</td><td>10,037</td><td>3,126</td><td>13,163</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Symbol</th><th style="text-align:left">Dimension</th><th style="text-align:left">Statement rated on a 1–7 scale</th></tr></thead>
+          <tbody>
+            <tr><td><span class="sym">L1</span></td><td style="text-align:left">Overall aesthetic quality</td><td class="left">The material as a whole has high aesthetic quality.</td></tr>
+            <tr><td><span class="sym">L2</span></td><td style="text-align:left">Personal liking</td><td class="left">I like the overall visual effect of the material.</td></tr>
+            <tr><td><span class="sym">L3</span></td><td style="text-align:left">Design suitability</td><td class="left">The material is suitable for product design or design applications.</td></tr>
+            <tr class="sep"><td><span class="sym w">W1</span></td><td style="text-align:left">Color appeal</td><td class="left">The color of the material is attractive.</td></tr>
+            <tr><td><span class="sym w">W2</span></td><td style="text-align:left">Gloss appeal</td><td class="left">The surface gloss of the material is attractive.</td></tr>
+            <tr><td><span class="sym w">W3</span></td><td style="text-align:left">Texture appeal</td><td class="left">The texture of the material is beautiful and visually attractive.</td></tr>
+            <tr><td><span class="sym w">W4</span></td><td style="text-align:left">Surface order</td><td class="left">The surface structure of the material has a sense of order.</td></tr>
+            <tr><td><span class="sym w">W5</span></td><td style="text-align:left">Material realism</td><td class="left">The material looks real and credible.</td></tr>
+            <tr><td><span class="sym w">W6</span></td><td style="text-align:left">Refinement</td><td class="left">The material looks refined and premium, with a strong sense of quality.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Split: 9,215 train, 1,974 validation, 1,974 test images, approximately preserving the proportions of the 18 material–view cells.</p>
+    </div>
+  </section>
+
+  <section class="spec" id="method">
+    <div class="label"><span class="k">Method</span><h2>MVCAA</h2></div>
+    <div class="body">
+      <p>Material-View Conditioned Aesthetic Assessment describes the material and its view in a sentence and lets that sentence decide which parts of the image to look at. The score itself is always computed from image evidence.</p>
+      <figure>
+        <div class="plate"><img src="img/overview.png" alt="MVCAA overview: a frozen CLIP text encoder turns a material-view sentence into a query; the query drives conditional pooling over patch features of an EVA ViT-g/14 encoder adapted with DoRA; a score head predicts aesthetic quality, personal liking and design suitability." width="1320" height="594"></div>
+        <figcaption>Overview. Teal is the image path, plum the condition path, amber the DoRA adaptation.</figcaption>
+      </figure>
+      <div class="points">
+        <div class="point" style="--k: var(--plum)"><h3>Material–view query</h3><p>A frozen text encoder embeds a templated sentence such as a macro view of wood; a learned projection turns it into the query.</p></div>
+        <div class="point" style="--k: var(--teal)"><h3>Conditional pooling</h3><p>Four attention heads weight the image patches by the query, and a uniform mean of the same values keeps image-wide appearance.</p></div>
+        <div class="point" style="--k: var(--amber)"><h3>DoRA on four blocks</h3><p>Only the feed-forward layers of the last four encoder blocks are adapted. 1.46M parameters are trained in total.</p></div>
+      </div>
+      <figure>
+        <div class="plate"><img src="img/pooling.png" alt="Conditional pooling with a uniform anchor: keys and values from the patch features; the query and keys give attention weights; the weighted values are concatenated and added to the uniform mean of the same values." width="1320" height="670"></div>
+        <figcaption>Conditional pooling with a uniform anchor. One of four heads is shown.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="spec" id="results">
+    <div class="label"><span class="k">Results</span><h2>Held-out test</h2></div>
+    <div class="body">
+      <p>The primary metric, MacroMatSRCC, is the Spearman correlation between predictions and ratings computed within each material and averaged over the six materials and three holistic ratings. It rewards ranking images of the same material, as a designer compares them. Means over five seeds.</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Method</th><th>All views</th><th>Standard</th><th>Macro</th><th>Application</th><th>PLCC</th><th>MAE</th><th>Trained params</th></tr></thead>
+          <tbody class="num">
+            <tr><td>ResNet-50</td><td>.326</td><td>.218</td><td>.299</td><td>.249</td><td>.393</td><td>.560</td><td>23.5M</td></tr>
+            <tr><td>ViT-B/16</td><td>.366</td><td>.286</td><td>.319</td><td>.279</td><td>.441</td><td>.541</td><td>85.8M</td></tr>
+            <tr><td>NIMA</td><td>.333</td><td>.242</td><td>.266</td><td>.246</td><td>.394</td><td>.550</td><td>134.3M</td></tr>
+            <tr><td>Charm</td><td>.278</td><td>.205</td><td>.167</td><td>.198</td><td>.338</td><td>.572</td><td>21.5M</td></tr>
+            <tr><td>IAA-LQ</td><td>.413</td><td>.354</td><td>.386</td><td>.317</td><td>.492</td><td>.525</td><td>105.8M</td></tr>
+            <tr class="ours"><td>MVCAA</td><td>.448</td><td>.362</td><td>.416</td><td>.353</td><td>.530</td><td>.507</td><td>1.46M</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">MVCAA improves all-view MacroMatSRCC by 8.5% over IAA-LQ, which uses the same EVA ViT-g/14 encoder and trains about 70 times as many parameters. Inference takes 18.7 ms per image against 24.4 ms for IAA-LQ on one RTX 3090.</p>
+      <h3 style="font-size:18px">Ablations</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Variant</th><th>All views</th><th>Standard</th><th>Macro</th><th>Application</th><th>PLCC</th><th>MAE</th></tr></thead>
+          <tbody class="num">
+            <tr class="ours"><td>MVCAA</td><td>.448</td><td>.362</td><td>.416</td><td>.353</td><td>.530</td><td>.507</td></tr>
+            <tr><td>w/o DoRA</td><td>.420</td><td>.355</td><td>.384</td><td>.328</td><td>.504</td><td>.521</td></tr>
+            <tr><td>w/o uniform anchor</td><td>.434</td><td>.360</td><td>.397</td><td>.341</td><td>.522</td><td>.509</td></tr>
+            <tr><td>Material-only query</td><td>.431</td><td>.354</td><td>.392</td><td>.320</td><td>.517</td><td>.513</td></tr>
+            <tr><td>Shared learned query</td><td>.427</td><td>.357</td><td>.388</td><td>.316</td><td>.511</td><td>.519</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Removing the condition hurts application scenes most, where other objects and surrounding context compete with the designated material.</p>
+    </div>
+  </section>
+
+  <section class="spec" id="attributes">
+    <div class="label"><span class="k">Analysis</span><h2>Six attributes</h2></div>
+    <div class="body">
+      <p>The six appearance attributes jointly account for most of the variation in holistic judgment. No single attribute suffices: refinement alone explains 68.7% of the test variance in overall aesthetic quality, while the first principal component of all six explains 77.1%.</p>
+      <div class="r2">
+        <div><b>.779</b><span>Test R² for L1 overall aesthetic</span></div>
+        <div><b>.776</b><span>Test R² for L2 personal liking</span></div>
+        <div><b>.646</b><span>Test R² for L3 design suitability</span></div>
+      </div>
+      <div class="bars" role="img" aria-label="Shapley share of explained variance in L1: refinement 22.6 percent, texture 19.1, color 16.1, gloss 15.9, surface order 15.6, realism 10.7.">
+        <div class="bar top"><span>W6 Refinement</span><div class="track"><div class="fill" style="width:90.4%"></div></div><span class="v">22.6%</span></div>
+        <div class="bar"><span>W3 Texture appeal</span><div class="track"><div class="fill" style="width:76.4%"></div></div><span class="v">19.1%</span></div>
+        <div class="bar"><span>W1 Color appeal</span><div class="track"><div class="fill" style="width:64.4%"></div></div><span class="v">16.1%</span></div>
+        <div class="bar"><span>W2 Gloss appeal</span><div class="track"><div class="fill" style="width:63.6%"></div></div><span class="v">15.9%</span></div>
+        <div class="bar"><span>W4 Surface order</span><div class="track"><div class="fill" style="width:62.4%"></div></div><span class="v">15.6%</span></div>
+        <div class="bar"><span>W5 Material realism</span><div class="track"><div class="fill" style="width:42.8%"></div></div><span class="v">10.7%</span></div>
+      </div>
+      <p class="note">Shapley share of explained test variance in L1 (bars on a 0–25% scale). The weights shift with material and view: gloss counts less for stone, wood, and application scenes, where surface order gains weight.</p>
+    </div>
+  </section>
+
+  <section class="spec" id="cite">
+    <div class="label"><span class="k">Citation</span><h2>Cite</h2></div>
+    <div class="body cite">
+      <pre>Anonymous submission. The BibTeX entry will be added after the review process.</pre>
+    </div>
+  </section>
+
+  <footer>MaterialAesthetics is provided for non-commercial research use. Images remain the property of their respective owners.</footer>
+</div>
